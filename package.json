@@ -1,0 +1,62 @@
+{
+  "name": "nodejs-getting-started",
+  "version": "1.0.0",
+  "description": "End to end sample for running Node.JS applications on Google Cloud Platform",
+  "repository": "https://github.com/GoogleCloudPlatform/nodejs-getting-started",
+  "private": true,
+  "scripts": {
+    "build-css": "stylus source/stylesheets/index.styl -o public/stylesheets",
+    "watch-css": "stylus source/stylesheets/index.styl -o public/stylesheets -w",
+    "clean": "rm -rf static/css && mkdir -p static/css",
+    "build": "npm run clean && npm run build-css",
+    "watch": "npm run clean && npm run watch-css & nodemon server -e js,jade",
+    "start": "node ./bin/www"
+  },
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Jon Wayne Parrott",
+      "email": "jonwayne@google.com"
+    },
+    {
+      "name": "Jonathan Simon",
+      "email": "jbsimon@google.com"
+    },
+    {
+      "name": "Jason Dobry",
+      "email": "jdobry@google.com"
+    }
+  ],
+  "license": "Apache Version 2.0",
+  "dependencies": {
+    "async": "^1.5.2",
+    "body-parser": "^1.15.0",
+    "bcrypt-nodejs": "0.0.3",
+    "client-sessions": "^0.7.0",
+    "cookie-session": "^2.0.0-alpha.1",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "gcloud": "^0.28.0",
+    "googleapis": "^2.1.7",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.8",
+    "jade": "^1.11.0",
+    "kerberos": "^0.0.18",
+    "lodash": "^4.5.1",
+    "mongodb": "^2.1.7",
+    "morgan": "~1.6.1",
+    "multer": "^1.1.0",
+    "prompt": "^1.0.0",
+    "stylus": "^0.54.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=0.12.7"
+  }
+}

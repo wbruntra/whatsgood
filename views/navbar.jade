@@ -1,0 +1,43 @@
+.navbar.navbar-inverse
+  .container
+    .navbar-header
+      .navbar-brand WhatsGood
+
+    ul.nav.navbar-nav
+      li
+        a(href="#", data-toggle="modal", data-target="#aboutModal") About
+
+    ul.nav.navbar-nav.navbar-right
+      // [START profile]
+      if profile
+        li
+          if profile.image
+            img.img-circle(src=profile.image.url, width=30)
+        li
+          a(href="#", data-toggle="modal", data-target="#profileModal") #{session.username}
+        li
+          a(href=logout) (logout)
+      else
+        li
+          a(href=login) Login
+      // [END profile]
+
+//- nav(class="navbar navbar-inverse")
+//-   div(class="container-fluid")
+//-     div(class="navbar-header")
+//-       a(class="navbar-brand") WhatsGood
+//-     ul(class="nav navbar-nav")
+//-       li
+//-         a(href="#") Home
+//-       li
+//-         a(href="#", data-toggle="modal", data-target="#aboutModal") About
+//-         
+//-     p.navbar-text.navbar-right
+//-       if profile
+//-         if profile.image
+//-           img.img-circle(src=profile.image.url, width=24)
+//-         span
+//-           a(href="#" data-toggle="modal", data-target="#profileModal") #{profile.displayName} &nbsp;
+//-           a(href=logout) (logout)
+//-       else
+//-           a(href=login) Login

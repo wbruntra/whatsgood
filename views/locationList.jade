@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Location List
+  p
+    | Your locations are going to be shown here
+    | It is going to be awesome.
+  div
+    each location in locations
+      include _location.jade
+      
+block scripts
+  script(src='javascripts/list.js')

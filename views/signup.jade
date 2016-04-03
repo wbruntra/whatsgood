@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  
+  .container
+    h3 Welcome! How would you like to be known on the site?
+    if err
+      p #{err}
+    .row
+      form#signup(method="post",action="/users/register")
+        .form-group
+          p Nickname (leave blank to use your full name)
+          input(type="text",name="username", placeholder="#{session.profile.displayName}")
+        .form-group
+          input(type="submit", class="btn btn-primary", value="Register")
