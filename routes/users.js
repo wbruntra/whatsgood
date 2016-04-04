@@ -3,6 +3,7 @@ var router = express.Router();
 var authController = require('../controllers/auth');
 
 var User = require('../models/user');
+var Location = require('../models/location');
 
 /* GET users listing. */
 
@@ -32,23 +33,33 @@ router.post('/register', function(req, res, next){
 });
 
 router.post('/edit', function(req, res, next) {
-  var username = req.body.username;
+  var username = req.body.username.trim();
   if (!username) {
-    username = req.session.profile.displayName;
-  }
+    res.json({msg: "no changes made"});
+  } else {
   User.findOne({_id: req.session.profile.id}, function(err, user) {
     user.username = username;
     user.save(function(err) {
       if (err) {
-        res.json({msg: "error!"});
+        res.json({msg: "Couldn't save!"});
       }
       else {
         req.session.username = username;
-        res.json({msg: "no error!"});
+        res.json({msg: "Saved"});
       }
     });
   });
+  }
 });
+
+router.get('/myprofile', function(req,res,next) {
+  var user_id = req.session.profile.id;
+  console.log(user_id);
+  Location.find({creatorId: user_id}, function(err, locations) {
+    res.render('profile',{locations: locations});
+  });
+});
+
 router.get('/', function(req, res, next) {
   User.find(function(err,users) {
     if (err)

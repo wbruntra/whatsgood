@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 
 var LocationSchema = new mongoose.Schema({
   name: {
-    type: String,
-    required: true },
+    type: String },
   category: String,
   description: String,
   price: String,
@@ -11,7 +10,7 @@ var LocationSchema = new mongoose.Schema({
   lng: {type: Number, required: true},
   date: { type: Date, default: Date.now },
   createdBy: String,
-  creatorId: Number
+  creatorId: String
 });
 
 module.exports = mongoose.model('Location', LocationSchema);

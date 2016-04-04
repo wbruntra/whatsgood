@@ -28,6 +28,7 @@ mongoose.connect('mongodb://localhost:27017/whatsgood');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var locations = require('./routes/locations')
 
 var app = express();
 
@@ -72,6 +73,7 @@ app.use(oauth2.router);
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/locations',locations);
 
 // Setup modules and dependencies
 var images = require('./lib/images')(config.gcloud, config.cloudStorageBucket);

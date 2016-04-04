@@ -8,29 +8,8 @@ var Location = require('../models/location');
 router.use(oauth2.aware);
 router.use(oauth2.template);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  // console.log(req.session);
-  try {
-    console.log(req.session.profile.id);
-  }
-  catch(e) {
-    console.log('no profile right now');
-  }
-  cats = {"guis":"Tacos de Guisado",
-  "tortas": "Tortas",
-  'hamburgers': "Hamburgers",
-  'comida':"Comida Corrida",
-  "tacos":"Tacos",
-  "quesadillas":"Quesadillas",
-  'other':"Other"};
-  Location.find(function(err, recentLocations) {
-    res.render('index', { title: 'WhatsGood', locations: recentLocations, cats: cats });
-  });
-});
-
 /* GET saved locations */
-router.get('/locations', function(req, res) {
+router.get('/', function(req, res) {
   Location.find(function( err, locations) {
     res.render('locationList', { title: 'Saved Locations', locations : locations});
     // if (err)
@@ -39,7 +18,13 @@ router.get('/locations', function(req, res) {
   });
 });
 
-router.post('/addlocation', function(req,res) {
+router.get('/json',function(req,res) {
+  Location.find(function(err,locations) {
+    res.json(locations);
+  });
+});
+
+router.post('/add', function(req,res) {
   var newLocation = req.body;
   var username = req.session.username;
   if (!username) {
@@ -56,7 +41,7 @@ router.post('/addlocation', function(req,res) {
   });
 });
 
-router.post('/editlocation', function(req,res) {
+router.post('/edit', function(req,res) {
   var newLocation = req.body;
   console.log(newLocation);
   var username = req.session.username;
@@ -79,7 +64,13 @@ router.post('/editlocation', function(req,res) {
   });
 });
 
-
+router.post('/delete', function(req,res) {
+  var locationId = req.body.locationId;
+  console.log(locationId);
+  Location.remove({_id:locationId},function(err,location) {
+    res.send('DELETED');
+  });
+});
 
 router.post('/inview', function(req,res) {
   var north = req.body.north;
@@ -101,28 +92,6 @@ router.post('/mylocations', function(req,res) {
   var user_id = req.session.profile.id;
   Location.find({creatorId: user_id}, function(err, locations) {
     res.json(locations);
-  });
-});
-
-router.get('/migrate', function(req,res) {
-  Location.find(function(err, locations) {
-    for (var i=0;i<locations.length;i++) {
-      var location = locations[i];
-      var center = location.center;
-      console.log(center);
-      var lat = parseFloat(center.split(',')[0]);
-      var lng = parseFloat(center.split(',')[1]);
-      console.log(lng);
-      location['lat'] = lat;
-      location['lng'] = lng;
-      location.save(function(err) {
-        if (err)
-          {res.send(err)}
-        // else {
-        //   // res.json(location);
-        // }
-      });
-    }
   });
 });
 

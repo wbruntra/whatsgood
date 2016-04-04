@@ -1,0 +1,9 @@
+extends layout
+
+block content
+
+  include navbar.jade
+
+  .container
+    each location in locations
+      include _location.jade
