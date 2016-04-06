@@ -4,6 +4,16 @@ var config = require('../config')();
 var oauth2 = require('../lib/oauth2')(config.oauth2);
 
 var Location = require('../models/location');
+var User = require('../models/user');
+
+
+var cats =   {"Tacos de Guisado":"guis",
+  "Tortas":"tortas",
+  "Hamburgers":"hamburgers",
+  "Comida Corrida":"comida",
+  "Tacos":"tacos",
+  "Quesadillas":"quesadillas",
+  "Other":"other"};
 
 router.use(oauth2.aware);
 router.use(oauth2.template);
@@ -38,6 +48,23 @@ router.post('/add', function(req,res) {
       res.send(err);
 
     res.json(location);
+  });
+});
+
+router.post('/android', function(req, res) {
+  var newLocation = req.body;
+  var userId = req.body.creatorId;
+  newLocation['category'] = cats[newLocation['category']];
+  User.findOne({_id:userId},function(err,user) {
+    newLocation['createdBy'] = user.username;
+    location = new Location(newLocation);
+    console.log(JSON.stringify(location));
+    location.save(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json(location);
+    });
   });
 });
 
