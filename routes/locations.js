@@ -59,13 +59,16 @@ router.post('/android', function(req, res) {
     newLocation['createdBy'] = user.username;
     location = new Location(newLocation);
     console.log(JSON.stringify(location));
-    res.json(location);
-    // location.save(function(err) {
-    //   if (err)
-    //     res.send(err);
-    //
-    //   res.json(location);
-    // });
+    // res.json({msg:""});
+    location.save(function(err) {
+      if (err) {
+        res.json({msg:"ERR"});
+      }
+      else {
+
+      res.json({msg:"OK"});
+    }
+    });
   });
 });
 

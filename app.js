@@ -23,8 +23,8 @@ var config = require('./config')();
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/whatsgood');
-// mongoose.connect('mongodb://william:3Sj0Ju0gOackrDuK@ds023088.mlab.com:23088/whatsgood')
+// mongoose.connect('mongodb://localhost:27017/whatsgood');
+mongoose.connect('mongodb://william:3Sj0Ju0gOackrDuK@ds023088.mlab.com:23088/whatsgood')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
