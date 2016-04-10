@@ -75,13 +75,6 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/locations',locations);
 
-// Setup modules and dependencies
-var images = require('./lib/images')(config.gcloud, config.cloudStorageBucket);
-var model = require('./books/model')(config);
-
-// Books
-app.use('/books', require('./books/crud')(model, images, oauth2));
-app.use('/api/books', require('./books/api')(model));
 
 // Basic 404 handler
 app.use(function (req, res) {

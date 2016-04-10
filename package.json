@@ -1,9 +1,6 @@
 {
   "name": "nodejs-getting-started",
   "version": "1.0.0",
-  "description": "End to end sample for running Node.JS applications on Google Cloud Platform",
-  "repository": "https://github.com/GoogleCloudPlatform/nodejs-getting-started",
-  "private": true,
   "scripts": {
     "build-css": "stylus source/stylesheets/index.styl -o public/stylesheets",
     "watch-css": "stylus source/stylesheets/index.styl -o public/stylesheets -w",
