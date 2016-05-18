@@ -8,6 +8,9 @@
 .nav img {
   padding-top: 8px;
 }
+#foodGroups {
+  margin-bottom: 10px;
+}
 #foodGroups .table-head {
   height: 30px;
   font-size: 14px;
@@ -51,6 +54,10 @@
 #recentLocations li {
   float: left;
   list-style: none;
+}
+#search button {
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
 form label {
   width: 120px;
