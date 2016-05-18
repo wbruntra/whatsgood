@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config')();
 var oauth2 = require('../lib/oauth2')(config.oauth2);
+var sanitizeHtml = require('sanitize-html');
 
 var Location = require('../models/location');
 var User = require('../models/user');
@@ -36,6 +37,9 @@ router.get('/json',function(req,res) {
 
 router.post('/add', function(req,res) {
   var newLocation = req.body;
+  for (var key in newLocation) {
+      newLocation[key] = sanitizeHtml(newLocation[key]);
+  }
   var username = req.session.username;
   if (!username) {
     username = 'Anonymous';
@@ -43,16 +47,19 @@ router.post('/add', function(req,res) {
   newLocation['createdBy'] = username;
   newLocation['creatorId'] = req.session.profile.id;
   location = new Location(newLocation);
-  location.save(function(err) {
-    if (err)
-      res.send(err);
-
-    res.json(location);
-  });
+  // location.save(function(err) {
+  //   if (err)
+  //     res.send(err);
+  //
+  //   res.json(location);
+  // });
 });
 
 router.post('/android', function(req, res) {
   var newLocation = req.body;
+  for (var key in newLocation) {
+      newLocation[key] = sanitizeHtml(newLocation[key]);
+  }
   var userId = req.body.creatorId;
   newLocation['category'] = cats[newLocation['category']];
   User.findOne({_id:userId},function(err,user) {
