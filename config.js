@@ -54,7 +54,7 @@ var getConfig = module.exports = function () {
       clientId: process.env.OAUTH_CLIENT_ID || '1076675077133-qfuntqaqd96f4c1hl7c2ha5dnq2ls63b.apps.googleusercontent.com',
       clientSecret: process.env.OAUTH_CLIENT_SECRET || '1RFRRLormENgm7s9txCIy7LV',
       redirectUrl: process.env.OAUTH2_CALLBACK ||
-        remote_url+'/oauth2callback',
+        remote_url+'oauth2callback',
       scopes: ['email', 'profile']
     }
   };
