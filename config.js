@@ -13,6 +13,9 @@
 
 'use strict';
 
+var local_url = 'http://localhost:5000/'
+var remote_url = 'https://pacific-castle-63467.herokuapp.com/'
+
 var getConfig = module.exports = function () {
   return {
     port: process.env.PORT || 8080,
@@ -44,9 +47,6 @@ var getConfig = module.exports = function () {
       url: process.env.MONGO_URL || 'mongodb://localhost:27017',
       collection: process.env.MONGO_COLLECTION || 'books'
     },
-
-var local_url = 'http://localhost:5000/'
-var remote_url = 'https://pacific-castle-63467.herokuapp.com/'
 
     // The client ID and secret can be obtained by generating a new web
     // application client ID on Google Developers Console.
