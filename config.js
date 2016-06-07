@@ -45,13 +45,16 @@ var getConfig = module.exports = function () {
       collection: process.env.MONGO_COLLECTION || 'books'
     },
 
+var local_url = 'http://localhost:5000/'
+var remote_url = 'https://pacific-castle-63467.herokuapp.com/'
+
     // The client ID and secret can be obtained by generating a new web
     // application client ID on Google Developers Console.
     oauth2: {
       clientId: process.env.OAUTH_CLIENT_ID || '1076675077133-qfuntqaqd96f4c1hl7c2ha5dnq2ls63b.apps.googleusercontent.com',
       clientSecret: process.env.OAUTH_CLIENT_SECRET || '1RFRRLormENgm7s9txCIy7LV',
       redirectUrl: process.env.OAUTH2_CALLBACK ||
-        'http://localhost:5000/oauth2callback',
+        remote_url+'/oauth2callback',
       scopes: ['email', 'profile']
     }
   };
