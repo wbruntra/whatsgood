@@ -226,17 +226,19 @@ function createInfoWindow(locationIndex) {
   div.append(infodiv);
   if (profile)
     if (location.creatorId == profile.id) {
+      editbar = $('<div class="editbar"></div>');
       del = $('<a>');
       del.attr('href','#');
       del.addClass('deleter');
       del.html('delete');
-      div.append(del);
+      editbar.append(del);
       edit = $('<a>');
       edit.attr('href','#');
       edit.attr('data-location-index',locationIndex);
       edit.addClass('editor');
       edit.html('edit');
-      div.append(edit);
+      editbar.append(edit);
+      div.append(editbar);
     }
     else {
       report = $('<a>');

@@ -75,7 +75,6 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/locations',locations);
 
-
 // Basic 404 handler
 app.use(function (req, res) {
   res.status(404).send('Not Found');
