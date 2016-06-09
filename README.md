@@ -1,7 +1,3 @@
-# 4 - Authenticating users
+# Mexico City Street Food
 
-This folder contains the sample code for the [Authenticating users][step-4]
-tutorial. Please refer to the tutorial for instructions on configuring, running,
-and deploying this sample.
-
-[step-4]: https://cloud.google.com/nodejs/getting-started/authenticate-users
+This project was created with Node.js and the Google Maps API, with the goal of cataloging the many delicious street food options available in Mexico City, Mexico. It has an accompanying [Android](https://github.com/wbruntra/form-sender) app.
