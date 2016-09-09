@@ -57,45 +57,6 @@ $(function() {
 
   $('#submitNewPlace').click(addLocation);
 
-  // $('#signupForm').on('submit', function(e) {
-  //   $('#signupForm p.error').remove();
-  //   e.preventDefault();
-  //   var formData = $(this).serializeObject();
-  //   var err = signupErrors(formData);
-  //   if (err) {
-  //     var errorMessage = createErrorMessage(err);
-  //     $('#signupForm').append(errorMessage);
-  //   }
-  //   else {
-  //     postForm('/users/signup', formData, function(data) {
-  //       console.log(data);
-  //       var err = data.err;
-  //       if (err) {
-  //         errorMessage = createErrorMessage(err);
-  //         $('#signupForm').append(errorMessage);
-  //       }
-  //       else {
-  //         window.location.href = '/';
-  //       }
-  //     });
-  //   }
-  // });
-
-  // $('#loginForm').on('submit',function(e) {
-  //   $('#loginForm p.error').remove();
-  //   e.preventDefault();
-  //   var formData = $(this).serializeObject();
-  //   postForm('/users/login', formData, function(data) {
-  //     var err = data.err;
-  //     if (err) {
-  //       errorMessage = createErrorMessage(err);
-  //       $('#loginForm').append(errorMessage);
-  //     }
-  //     else {
-  //       window.location.href = '/';
-  //     }
-  //   });
-  // });
 
   $('#profileForm').on('submit', function(e) {
     e.preventDefault();
@@ -114,22 +75,6 @@ $(function() {
     }
   });
 });
-
-// function signupErrors(formData) {
-//   var username = formData.username;
-//   var password = formData.password;
-//   var confirm = formData.confirm;
-//   var email = formData.email;
-//   if (password.length < 6) {
-//     return 'Password must be at least 6 characters.'
-//   }
-//   else if (password != confirm) {
-//     return 'Passwords do not match.'
-//   }
-//   else {
-//     return null;
-//   }
-// }
 
 //General Functions
 
@@ -227,6 +172,7 @@ function createInfoWindow(locationIndex) {
   if (profile)
     if (location.creatorId == profile.id) {
       editbar = $('<div class="editbar"></div>');
+      editbar.attr('data-location-index',locationIndex)
       del = $('<a>');
       del.attr('href','#');
       del.addClass('deleter');
@@ -234,7 +180,6 @@ function createInfoWindow(locationIndex) {
       editbar.append(del);
       edit = $('<a>');
       edit.attr('href','#');
-      edit.attr('data-location-index',locationIndex);
       edit.addClass('editor');
       edit.html('edit');
       editbar.append(edit);
@@ -291,7 +236,9 @@ function addLocation(event) {
 $('body').on('click','a.editor', function(e) {
   console.log('editor clicked');
   var locationIndex = $(this).parent().data('location-index');
+  console.log(locationIndex);
   var location = recentLocations[parseInt(locationIndex)];
+  console.log(location);
   var locString = location.lat+','+location.lng;
   requestMapImage(locString);
   $('#locationForm').data('status','editing');

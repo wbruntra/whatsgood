@@ -1,0 +1,14 @@
+div#profileModal(class="modal fade", tabindex="-1", role="dialog", aria-hidden="true")
+  .modal-dialog
+    .modal-content(id="profileContent")
+      .modal-header
+        button(type="button" class="close", data-dismiss="modal", aria-hidden="true") &times;
+        h4(class="modal-title") Profile
+      .modal-body
+        p.
+          Give yourself a nickname
+        form(id="profileForm", role="form", action="/users/edit", method="post")
+          .form-group
+            input(type="text", name="username", placeholder="#{session.username}", autofocus)
+          div
+            input(id="profileButton", class="btn btn-default", type="submit", value="Edit Profile")

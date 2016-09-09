@@ -17,15 +17,15 @@ router.get('/', function(req, res, next) {
   catch(e) {
     console.log('no profile right now');
   }
-  cats = {"guis":"Tacos de Guisado",
-  "tortas": "Tortas",
-  'hamburgers': "Hamburgers",
-  'comida':"Comida Corrida",
-  "tacos":"Tacos",
-  "quesadillas":"Quesadillas",
-  'other':"Other"};
+  var categories = {"guis":"Tacos de Guisado",
+                    "tortas": "Tortas",
+                    'hamburgers': "Hamburgers",
+                    'comida':"Comida Corrida",
+                    "tacos":"Tacos",
+                    "quesadillas":"Quesadillas",
+                    'other':"Other"};
   Location.find(function(err, recentLocations) {
-    res.render('index', { title: 'WhatsGood', locations: recentLocations, cats: cats });
+    res.render('index', { title: 'WhatsGood', locations: recentLocations, categories: categories });
   });
 });
 

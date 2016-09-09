@@ -1,0 +1,36 @@
+//-	Standard text box
+mixin textBox(label, attr, placeholder)
+  .form-group
+    label #{label}
+    input(id="#{attr}-entry", type="text", name="location[#{attr}]", placeholder="#{placeholder}")
+
+#formContainer(class="modal fade", tabindex="-1", role="dialog", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button", class="close", data-dismiss="modal", aria-hidden="true") &times;
+        h4(class="modal-title") Add New Location
+      div(class="modal-body")
+        form(id="location-form", class="popupContainer", role="form", action="/addlocation", method="post")
+          #mapImg
+          +textBox('Name of Place','name','Location Name')
+          +textBox('Found By', 'finder', #{session.username})
+          span #{session.username}
+          div(class="form-group")
+            label Found By
+            input(id="finderName", type="text", name="location-name", value="#{session.username}", hidden)
+          +textBox('Price Range','price','How much did you spend?')
+          div(class="form-group")
+            label Price Range
+            input(id="priceRange", type="text", name="price-range", placeholder="How much did your meal cost?")
+          div(class="form-group")
+            label Food Category
+            select(id="foodCategory", type="select", name="category")
+              each title,key in cats
+                option(value="#{key}") #{title}
+          div(class="form-group")
+            textarea(id="placeDescription",type="text", name="description", placeholder="Any helpful tips/comments?")
+          div
+            input(id="submitNewPlace", class="btn btn-default" type="submit", value="Submit!")
+
+button(id="formOpenButton", class="btn btn-info", data-toggle="modal", data-target="#formContainer", style="display:none;") Open Form

@@ -1,0 +1,14 @@
+div#loginModal(class="modal fade", tabindex="-1", role="dialog", aria-hidden="true")
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-header")
+        button(type="button", class="close", data-dismiss="modal", aria-hidden="true") &times;
+        h4(class="modal-title") Log In
+      div(class="modal-body")
+        form(id="loginForm", role="form", action="/users/login", method="post")
+          div(class="form-group")
+            input(type="text", name="username", placeholder="Username")
+          div(class="form-group")
+            input(type="password", name="password", placeholder="Password")
+          div
+            input(id="signupButton", class="btn btn-default" type="submit", value="Log in")

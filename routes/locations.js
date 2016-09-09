@@ -47,12 +47,12 @@ router.post('/add', function(req,res) {
   newLocation['createdBy'] = username;
   newLocation['creatorId'] = req.session.profile.id;
   location = new Location(newLocation);
-  // location.save(function(err) {
-  //   if (err)
-  //     res.send(err);
-  //
-  //   res.json(location);
-  // });
+  location.save(function(err) {
+    if (err)
+      res.send(err);
+
+    res.json(location);
+  });
 });
 
 router.post('/android', function(req, res) {
