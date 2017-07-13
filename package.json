@@ -9,21 +9,7 @@
     "watch": "npm run clean && npm run watch-css & nodemon server -e js,jade",
     "start": "node ./bin/www"
   },
-  "author": "Google Inc.",
-  "contributors": [
-    {
-      "name": "Jon Wayne Parrott",
-      "email": "jonwayne@google.com"
-    },
-    {
-      "name": "Jonathan Simon",
-      "email": "jbsimon@google.com"
-    },
-    {
-      "name": "Jason Dobry",
-      "email": "jdobry@google.com"
-    }
-  ],
+  "author": "William Bruntrager",
   "license": "Apache Version 2.0",
   "dependencies": {
     "async": "^1.5.2",
@@ -54,6 +40,6 @@
     "supertest": "^1.2.0"
   },
   "engines": {
-    "node": ">=0.12.7"
+    "node": ">=6.11.1"
   }
 }
